@@ -76,3 +76,27 @@ const handleOnGenderSelect = (e) => {
 
   fetchUser(url);
 };
+
+//search by name
+
+document.getElementById("search").addEventListener("keyup", (e) => {
+  const { value } = e.target;
+
+  console.log(value);
+
+  const filteredArg = userList.filter((user) => {
+    const fullName = `${user.name.first} ${user.name.last}`.toLowerCase();
+
+    // Bring names in userList
+    console.log(fullName);
+
+    return fullName.includes(value.toLowerCase());
+  });
+
+  // Check if the input is empty, if so, display the entire list
+  if (value === "") {
+    display(userList);
+  } else {
+    display(filteredArg);
+  }
+});
